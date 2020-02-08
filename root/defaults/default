@@ -1,11 +1,9 @@
-## Version 2018/03/06 - Changelog: https://github.com/linuxserver/docker-heimdall/commits/master/root/defaults/default
-
 server {
 	listen 80 default_server;
 
 	listen 443 ssl;
 
-	root /var/www/html/public;
+	root /var/www/html;
 	index index.php index.html index.htm;
 
 	server_name _;
@@ -15,15 +13,8 @@ server {
 
 	client_max_body_size 0;
 
-        error_page 599 = @noauth;
-
-        location @noauth {
-                try_files $uri $uri/ /index.php?$args;
-        }
-
 	location / {
-		try_files $uri $uri/ /index.php?$query_string;
-
+		rewrite /(.*)/$ /index.php?dir=$1 last;
 	}
 
 	location ~ \.php$ {
@@ -34,6 +25,5 @@ server {
 		#fastcgi_pass unix:/var/run/php5-fpm.sock;
 		fastcgi_index index.php;
 		include /etc/nginx/fastcgi_params;
-
 	}
 }
