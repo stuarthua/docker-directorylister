@@ -1,8 +1,17 @@
 #!/usr/bin/with-contenv bash
 
 # download
-#curl -o /tmp/directorylister.tar.gz -L "https://github.com/stuarthua/directorylister/archive/2.7.3.tar.gz"
-#tar xf /tmp/directorylister.tar.gz -C /data/ --strip-components=1
+is_empty_dir(){ 
+	return `ls -A $1|wc -w`
+}
+if is_empty_dir '/data'; then
+	if [ -z ${DIRECTORYLISTER_RELEASE+x} ]; then
+		DIRECTORYLISTER_RELEASE=$(curl -sX GET "https://api.github.com/repos/stuarthua/directorylister/releases/latest"	| awk '/tag_name/{print $4;exit}' FS='[""]');
+	fi
+	curl -o /tmp/directorylister.tar.gz -L "https://github.com/stuarthua/directorylister/archive/${DIRECTORYLISTER_RELEASE}.tar.gz"
+	tar xf /tmp/directorylister.tar.gz -C /data/ --strip-components=1
+	rm -rf /tmp/*
+fi
 
 # create directory structure
 mkdir -p \
