@@ -5,7 +5,7 @@
 ## DirectoryLister
 
 * Fork from [DirectoryLister-2.72](https://github.com/DirectoryLister/DirectoryLister/tree/2.7.2)
-* Add new theme `vpsmm`
+* Add new theme `vpsmm` for pretty
 
 ### Preview
 
