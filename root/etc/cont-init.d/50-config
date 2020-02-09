@@ -2,10 +2,10 @@
 
 # create directory structure
 mkdir -p \
-	/data
+	/var/www
 
 # create symlinks
-ln -s /var/www/html /data
+ln -s /data /var/www/html
 
 # Echo init finish for test runs
 if [ -n "${TEST_RUN}" ]; then

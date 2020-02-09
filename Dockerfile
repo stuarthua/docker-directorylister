@@ -19,7 +19,7 @@ RUN \
  echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php7/php-fpm.conf && \
  echo "**** fetch directorylister ****" && \
  mkdir -p\
-	/var/www/html && \
+	/data && \
  if [ -z ${DIRECTORYLISTER_RELEASE+x} ]; then \
 	DIRECTORYLISTER_RELEASE=$(curl -sX GET "https://api.github.com/repos/stuarthua/directorylister/releases/latest" \
 	| awk '/tag_name/{print $4;exit}' FS='[""]'); \
@@ -29,7 +29,7 @@ RUN \
 	"https://github.com/stuarthua/directorylister/archive/${DIRECTORYLISTER_RELEASE}.tar.gz" && \
  tar xf \
  /tmp/directorylister.tar.gz -C \
-	/var/www/html/ --strip-components=1 && \
+	/data/ --strip-components=1 && \
  echo "**** cleanup ****" && \
  rm -rf \
 	/tmp/*
