@@ -1,5 +1,9 @@
 #!/usr/bin/with-contenv bash
 
+# download
+#curl -o /tmp/directorylister.tar.gz -L "https://github.com/stuarthua/directorylister/archive/2.7.3.tar.gz"
+#tar xf /tmp/directorylister.tar.gz -C /data/ --strip-components=1
+
 # create directory structure
 mkdir -p \
 	/var/www
