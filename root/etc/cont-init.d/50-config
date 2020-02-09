@@ -18,7 +18,9 @@ mkdir -p \
 	/var/www
 
 # create symlinks
-ln -s /data /var/www/html
+if [ ! -f "/var/www/html" ]; then
+	ln -s /data /var/www/html
+fi
 
 # Echo init finish for test runs
 if [ -n "${TEST_RUN}" ]; then
