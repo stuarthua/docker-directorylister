@@ -18,7 +18,7 @@ mkdir -p \
 	/var/www
 
 # create symlinks
-if [ ! -f "/var/www/html" ]; then
+if [ ! -L "/var/www/html" ]; then
 	ln -s /data /var/www/html
 fi
 
